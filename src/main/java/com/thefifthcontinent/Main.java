@@ -1,57 +1,28 @@
 package com.thefifthcontinent;
 
+import com.thefifthcontinent.sort.RippleSort;
+import com.thefifthcontinent.sort.Sort;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        int d[] = {14, 12, 19, 7, 4, 1};
-        boolean s;
+        int data[] = {14, 12, 19, 7, 4, 1};
 
-        System.out.println("Before: ");
-        for (int i=0; i<d.length; i++) {
-            System.out.print(d[i] + " ");
+        report("Before", data);
+
+        final Sort sorter = RippleSort.newInstance();
+        sorter.sort(data);
+
+        report("After", data);
+
+    }
+
+    private static void report(final String when, final int[] data) {
+        System.out.println(when + ": ");
+        for (int item : data) {
+            System.out.print(item + " ");
         }
         System.out.println();
-
-        do {
-
-            s = false;
-
-            for (int i=0; i<d.length -2; i++) {
-
-                if (d[i] > d[i+1]) {
-                    int temp = d[i];
-                    d[i] = d[i+1];
-                    d[i+1] = temp;
-                    s = true;
-                }
-
-            }
-
-            if (!s) {
-                break;
-            }
-
-            s = false;
-
-            for (int i=d.length -2; i>-0; i--) {
-
-                if (d[i] > d[i+1]) {
-                    int temp = d[i];
-                    d[i] = d[i+1];
-                    d[i+1] = temp;
-                    s = true;
-                }
-
-            }
-
-        } while(s);
-
-        System.out.println("After: ");
-        for (int i=0; i<d.length; i++) {
-            System.out.print(d[i] + " ");
-        }
-        System.out.println();
-
     }
 }
